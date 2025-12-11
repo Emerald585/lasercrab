@@ -153,14 +153,14 @@ function _update()
 	
 	
 	
-	if btn(❎) and p.lac > -1 then p.vx -= 0.2 shoot(p.x+10,p.y+2,3,0,12) p.lac-=1.5 else p.lac += 0.5 end
-	if btn(❎,1) and p2.lac > -1 then p2.vx += 0.2 shoot(p2.x,p2.y+2,-3,0,8) p2.lac-=1.5 else p2.lac += 0.5end
-	if btn(➡️) then p.vx += 0.1
-	elseif btn(⬅️) then p.vx -= 0.1
+	if btn(❎) and p.lac > -1 and time() > 6  then p.vx -= 0.2 shoot(p.x+10,p.y+2,3,0,12) p.lac-=1.5 else p.lac += 0.5 end
+	if btn(❎,1) and p2.lac > -1 and time() > 6  then p2.vx += 0.2 shoot(p2.x,p2.y+2,-3,0,8) p2.lac-=1.5 else p2.lac += 0.5end
+	if btn(➡️) and time() > 6 then p.vx += 0.1
+	elseif btn(⬅️) and time() > 6 then p.vx -= 0.1
 	else p.vx = p.vx / 1.6 end
 	
-	if btn(➡️,1) then p2.vx += 0.1
-	elseif btn(⬅️,1) then p2.vx -= 0.1
+	if btn(➡️,1) and time() > 6 then p2.vx += 0.1
+	elseif btn(⬅️,1) and time() > 6 then p2.vx -= 0.1
 	else p2.vx = p2.vx / 1.6 end
 	
 	if tcol(p2.x,p2.y) and p2.vy < 0 then p2.vy = 0 end
@@ -168,7 +168,7 @@ function _update()
 	if tcol(p2.x+8,p2.y+4) and p2.vx > 0 then p2.vx = 0 end
 	if tcol(p2.x+4,p2.y+8,0) and p2.vy > 0 then p2.vy = 0 else p.vy +=0.1 end
 	if tcol(p2.x+4,p2.y+8,0) then p2.vy = 0 else p2.vy +=0.2 end
-	if btn(jump,1) and tcol(p2.x+4,p2.y+8,0) then sfx(3)p2.vy = -3 end
+	if btn(jump,1) and time() > 6 and tcol(p2.x+4,p2.y+8,0) then sfx(3)p2.vy = -3 end
 	
 	if p.lac > 50 then p.lac = 50 end
 	if p2.lac > 50 then p2.lac = 50 end
@@ -178,7 +178,7 @@ function _update()
 	if tcol(p.x+8,p.y+4) and p.vx > 0 then p.vx = 0 end
 	if tcol(p.x+4,p.y+8,0) and p.vy > 0 then p.vy = 0 else p.vy +=0.1 end
 	if tcol(p.x+4,p.y+8,0) then p.vy = 0 else p.vy +=0.01 end
-	if btn(jump) and tcol(p.x+4,p.y+8,0) then  sfx(3)p.vy = -3 end
+	if btn(jump) and time() > 6 and tcol(p.x+4,p.y+8,0) then  sfx(3)p.vy = -3 end
 	
 	p.vx = mid(-2,p.vx,2)
 	p2.vx = mid(-2,p2.vx,2)
