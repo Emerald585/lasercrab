@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
+cartdata("emerald585_lasercrab")
 debug={velo_lines=false,velo_text=false}
 pal({[0]=0,1,-8,3,4,5,6,7,8,9,10,11,12,2,14,-4},1)
 p={x=10,y=100,vx=0,vy=0,f=1,w=8,h=8,hp=30,lac=50,flipx=false}
@@ -12,23 +13,27 @@ wtick=0
 ltick=-900
 lheight=14
 kotime=0
-jump=🅾️
+jump=dget(0)
 rt=0
 
 function intro()
-	cls()
-	ltick=-900
-	--spr(64,20,10,11,2)
-	if time() == 2 then sfx(5) end
-	if time() > 2 and time() < 4 then print("controller highly recommended",5,60) spr(12,56,40,2,2) end
-	if time() > 4 then print("friend required",35,60) spr(44,60,40,1,2) end
-	if time() < 2 then print("A GAME BY emerald585",25,60) spr(45,60,40,1,2) end
+	if dget(1) == false then
+		cls()
+		ltick=-900
+		--spr(64,20,10,11,2)
+		if time() == 2 then sfx(5) end
+		if time() > 2 and time() < 4 then print("controller highly recommended",5,60) spr(12,56,40,2,2) end
+		if time() > 4 then print("friend required",35,60) spr(44,60,40,1,2) end
+		if time() < 2 then print("A GAME BY emerald585",25,60) spr(45,60,40,1,2) end
+		dset(1,true)
+	end
 end
 
 function change_jump()
-	if jump == ⬆️ then jump = 🅾️ 
-	else jump = ⬆️ end
+	if jump == 2 then jump = 4 dset(0,4) 
+	else jump = 2 dset(0,2) end
 end
+
 
 menuitem(1,"change jump mode",change_jump)
 
@@ -153,7 +158,7 @@ function _update()
 	
 	
 	
-	if btn(❎) and p.lac > -1 and time() > 6  then
+	if btn(❎) and p.lac > -1 and time() > 6 then
 		if p.flipx then
 			p.vx += 0.2 shoot(p.x,p.y+2,-3,0,12) p.lac-=1.5 
 		else
@@ -239,7 +244,7 @@ function _draw()
 	if p.y > lheight*8 or p2.y > lheight*8 then  print("🅾️ to restart",41,16,5)  print("🅾️ to restart",40,15,7) sspr(8*8,8,28,16,110*easeoutinquart(kotime),50,28*2,16*2) if kotime < 1 then kotime += 0.05 end end
 	if kotime > 0 and kotime < 0.1 then sfx(4) end
 	if debug.velo_lines then line(p.x+3.5,p.y+3.5,p.x+3.5+p.vx*5,p.y+3.5+p.vy*5,8) line(p2.x+3.5,p2.y+3.5,p2.x+3.5+p2.vx*5,p2.y+3.5+p2.vy*5,8) end
-	if time() < 6 do intro() end
+	if time() < 6 then intro() end
 end
 
 __gfx__
