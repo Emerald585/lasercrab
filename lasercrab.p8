@@ -17,16 +17,13 @@ jump=dget(0)
 rt=0
 
 function intro()
-	if dget(1) == false then
-		cls()
-		ltick=-900
-		--spr(64,20,10,11,2)
-		if time() == 2 then sfx(5) end
-		if time() > 2 and time() < 4 then print("controller highly recommended",5,60) spr(12,56,40,2,2) end
-		if time() > 4 then print("friend required",35,60) spr(44,60,40,1,2) end
-		if time() < 2 then print("A GAME BY emerald585",25,60) spr(45,60,40,1,2) end
-		dset(1,true)
-	end
+	cls()
+	ltick=-900
+	--spr(64,20,10,11,2)
+	if time() == 2 then sfx(5) end
+	if time() > 2 and time() < 4 then print("controller highly recommended",5,60) spr(12,56,40,2,2) end
+	if time() > 4 then print("friend required",35,60) spr(44,60,40,1,2) end
+	if time() < 2 then print("A GAME BY emerald585",25,60) spr(45,60,40,1,2) end
 end
 
 function change_jump()
