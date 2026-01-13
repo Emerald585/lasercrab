@@ -3,18 +3,21 @@ version 43
 __lua__
 cartdata("emerald585_lasercrab")
 debug={velo_lines=false,velo_text=false}
-pal({[0]=0,1,-8,3,4,5,6,7,8,9,10,11,12,2,14,-4},1)
-p={x=10,y=100,vx=0,vy=0,f=1,w=8,h=8,hp=30,lac=50,flipx=false}
-p2={x=105,y=100,vx=0,vy=0,f=1,w=8,h=8,hp=30,lac=50,flipx=false} 
-bullet={}
-item={}
-partcile={}
-wtick=0
-ltick=-900
-lheight=14
-kotime=0
-jump=dget(0)
-rt=0
+
+
+function _init()
+	pal({[0]=0,1,-8,3,4,5,6,7,8,9,10,11,12,2,14,-4},1)
+	p={x=10,y=100,vx=0,vy=0,f=1,w=8,h=8,hp=30,lac=50,flipx=false}
+	p2={x=105,y=100,vx=0,vy=0,f=1,w=8,h=8,hp=30,lac=50,flipx=false} 
+	bullet={}
+	item={}
+	partcile={}
+	wtick=0
+	ltick=-900
+	lheight=14
+	kotime=0
+	rt=0
+end
 
 function intro()
 	cls()
@@ -113,7 +116,7 @@ function bullet_update()
 end
 
 function _update()
-	if p.y > lheight*8 and btn(🅾️) or p2.y > lheight*8 and btn(🅾️) then run() end
+	if p.y > lheight*8 and btn(🅾️) or p2.y > lheight*8 and btn(🅾️) then reload() _init() end
 	fxupdate()
 	if time()/10 == time()\10 then newitem(rnd(127),10,56) end 
 	updateitem()
