@@ -4,6 +4,15 @@ __lua__
 --disorganized stuff
 cartdata("emerald585_lasercrab")
 debug={velo_lines=false,velo_text=false}
+dofade=false
+
+function fade(progress)
+	for xx=0,15 do
+		for yy=0,15 do
+			circfill(xx*8+4,yy*8+4,8*(1-progress)+sin((yy)/15),0)
+		end
+	end
+end
 
 
 function _init()
@@ -19,6 +28,7 @@ function _init()
 	kotime=0
 	rt=0
 	mplay=false
+	fadep=0
 end
 
 function intro()
@@ -123,8 +133,10 @@ function bullet_update()
 end
 
 function _update()
+	if (dofade) fadep += 0.08
 	if not mplay and time() > 6 then music(0) mplay = true end
-	if p.y > lheight*8 and btn(🅾️) or p2.y > lheight*8 and btn(🅾️) then reload() _init() end
+	if p.y > lheight*8 and btn(🅾️) or p2.y > lheight*8 and btn(🅾️) then reload() _init() dofade = true  end
+	if p.y > lheight*8 and btn(🅾️,1) or p2.y > lheight*8 and btn(🅾️,1) then reload() _init() dofade = true end
 	fxupdate()
 	if time()/10 == time()\10 then newitem(rnd(127),10,rnd({56,57})) end 
 	updateitem()
@@ -258,6 +270,8 @@ function _draw()
 	if kotime > 0 and kotime < 0.1 then sfx(4) end
 	if debug.velo_lines then line(p.x+3.5,p.y+3.5,p.x+3.5+p.vx*5,p.y+3.5+p.vy*5,8) line(p2.x+3.5,p2.y+3.5,p2.x+3.5+p2.vx*5,p2.y+3.5+p2.vy*5,8) end
 	if time() < 6 then intro() end
+	if (dofade and fadep<1) fade(1-fadep)
+	if (dofade and fadep>1) fade(fadep-1)
 end
 
 -->8
