@@ -126,6 +126,8 @@ function bullet_update()
 		b.y += b.vy
 		if b.x > 130 then del(bullet, b) end
 		if b.x < 0 then del(bullet, b) end
+--		if (tcol(b.x,b.y,0)) b.vx *= -1
+		if (tcol(b.x,b.y,0)) del(bullet,b)
 		if prc(b,p2) then sfx(1)del(bullet,b) if p2.hp < 0 then p2.vx+=b.vx else p2.hp-=1end
 		elseif prc(b,p) then sfx(1)del(bullet,b) if p.hp < 0 then p.vx+=b.vx else p.hp -= 1 end end
 		
