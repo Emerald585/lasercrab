@@ -283,8 +283,10 @@ function _draw()
 	for fx in all(particle) do
 		circfill(fx.x,fx.y,fx.s,fx.c)
 	end
-	spr(1+p.f,p.x,p.y,1,1,p.flipx)
-	spr(5+p2.f,p2.x,p2.y,1,1,p2.flipx)
+--	spr(1+p.f,p.x,p.y,1,1,p.flipx)
+	sspr(8+flr(p.f)*8,0,8,8,p.x,p.y,8+abs(p.vx*2)-abs(p.vy),8+abs(p.vy*2)-abs(p.vx),p.flipx)
+--	spr(5+p2.f,p2.x,p2.y,1,1,p2.flipx)
+	sspr(8+flr(p2.f+4)*8,0,8,8,p2.x,p2.y,8+abs(p2.vx*2)-abs(p2.vy),8+abs(p2.vy*2)-abs(p2.vx),p2.flipx)
 	if(p.pwr==2)spr(15-p.pwrt\46.6667,p.x,p.y+1)
 	if(p2.pwr==2)spr(15-p2.pwrt\46.6667,p2.x,p2.y+1)
 	map()
